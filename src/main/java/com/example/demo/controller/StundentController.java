@@ -33,6 +33,11 @@ public class StundentController {
         return ResponseEntity.ok(this.studentService.findAllStudents());
     }
 
+    /**
+     * Welcome
+     * Welcome
+     */
+
     @GetMapping("/welcome")
     public String getWelcomeMessage(){
         return this.welcomeMessage;
