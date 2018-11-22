@@ -38,6 +38,13 @@ public class StundentController {
         return this.welcomeMessage;
     }
 
+    /**
+     * Get Student by Id
+     * @param id
+     *  Id of student
+     * @return
+     *  {@link Student}
+     */
     @GetMapping("/student/{id}")
     public ResponseEntity<Student> getStudentById(@PathVariable int id){
         return ResponseEntity.ok(this.studentService.getStudentById(id));
