@@ -19,7 +19,7 @@ public class StudentService {
     }
 
     public Student createStudent(Student student){
-        return this.studentRepository.createStudent(student);
+        return this.studentRepository.save(student);
     }
 
     public List<Student> findAllStudents(){
@@ -27,6 +27,6 @@ public class StudentService {
     }
 
     public Student getStudentById(int id){
-        return studentRepository.getStudentById(id);
+        return studentRepository.getOne(id);
     }
 }
