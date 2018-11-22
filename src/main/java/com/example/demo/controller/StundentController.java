@@ -39,18 +39,19 @@ public class StundentController {
     }
 
     @GetMapping("/student/{id}")
-    public ResponseEntity<Student> getStudentById(@PathVariable int id){
-        return ResponseEntity.ok(this.studentService.getStudentById(id));
-    }
-
-    @PutMapping("/student")
-    public ResponseEntity<?> createStudent(@RequestBody Student student){
-        Student result = this.studentService.createStudent(student);
+    public ResponseEntity<?> getStudentById(@PathVariable int id){
+        Student result = this.studentService.getStudentById(id);
         if (result !=null) {
             return ResponseEntity.status(HttpStatus.CREATED).build();
         } else {
             return ResponseEntity.notFound().build();
         }
+    }
+
+    @PutMapping("/student")
+    public ResponseEntity<?> createStudent(@RequestBody Student student){
+        this.studentService.createStudent(student);
+        return ResponseEntity.status(HttpStatus.CREATED).build();
     }
 
 }
