@@ -4,6 +4,12 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
 public class Student {
@@ -16,13 +22,17 @@ public class Student {
     private int age;
     private String address;
 
-    public Student(){}
+    @ManyToOne
+    private Course course;
 
-    public Student (final String name, final int age, final String address){
-        this.name = name;
-        this.age = age;
-        this.address = address;
-    }
+    @ManyToMany
+    @JoinTable(name = "students_teachers",
+            joinColumns = @JoinColumn(name = "student_id"),
+            inverseJoinColumns = @JoinColumn(name = "teacher_id")
+    )
+    List<Teacher> teachers = new ArrayList<>();
+
+    public Student(){}
 
     public String getName() {
         return name;
@@ -46,5 +56,21 @@ public class Student {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public Course getCourse() {
+        return course;
+    }
+
+    public void setCourse(Course course) {
+        this.course = course;
+    }
+
+    public List<Teacher> getTeachers() {
+        return teachers;
+    }
+
+    public void setTeachers(List<Teacher> teachers) {
+        this.teachers = teachers;
     }
 }
