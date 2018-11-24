@@ -33,11 +33,23 @@ public class StundentController {
         return ResponseEntity.ok(this.studentService.findAllStudents());
     }
 
+    /**
+     * Welcome
+     * Welcome
+     */
+
     @GetMapping("/welcome")
     public String getWelcomeMessage(){
         return this.welcomeMessage;
     }
 
+    /**
+     * Get Student by Id
+     * @param id
+     *  Id of student
+     * @return
+     *  {@link Student}
+     */
     @GetMapping("/student/{id}")
     public ResponseEntity<?> getStudentById(@PathVariable int id){
         Student result = this.studentService.getStudentById(id);
